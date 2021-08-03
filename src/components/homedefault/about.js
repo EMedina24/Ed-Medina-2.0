@@ -3,82 +3,75 @@ import {useStaticQuery, graphql} from 'gatsby';
 import Img from "gatsby-image";
 import { FiMapPin, FiPhoneIncoming ,FiGift, FiBookOpen , FiMail, FiCalendar, FiBook} from "react-icons/fi";
 
-const infoList = [
+
+
+
+const About = ( ) => {
+     const data = useStaticQuery(graphql`
+    query {
+        allGraphCmsAbout {
+            edges {
+              node {
+                sectionTitle
+                sectionParagraph
+                age
+                location
+                email
+                phone
+                resume {
+                  url
+                }
+              }
+            }
+          }
+    }
+  `);
+
+  const title = data.allGraphCmsAbout.edges[0].node.sectionTitle;
+  const description = data.allGraphCmsAbout.edges[0].node.sectionParagraph;
+  const location = data.allGraphCmsAbout.edges[0].node.location;
+  const email = data.allGraphCmsAbout.edges[0].node.email;
+  const phone = data.allGraphCmsAbout.edges[0].node.phone;
+  const age = data.allGraphCmsAbout.edges[0].node.age;
+
+  const resume = data.allGraphCmsAbout.edges[0].node.resume.url;
+  
+  const infoList = [
+  
     {
-        "id": "1",
-        "icon": <FiGift />,
-        "label": "Birthday:",
-        "link": "01.07.1990"
-    },
-    {
-        "id": "2",
+        "id": "",
         "icon": <FiMapPin />,
         "label": "Location:",
-        "link": "Ave 11, New York, USA"
+        "link": location
     },
-    {
-        "id": "3",
-        "icon": <FiBookOpen />,
-        "label": "Study:",
-        "link": "University of Chicago"
-    },
+   
     {
         "id": "4",
         "icon": <FiMail />,
         "label": "Mail:",
-        "link": "mymail@gmail.com"
+        "link": email
     },
     {
         "id": "4",
         "icon": <FiCalendar />,
         "label": "Age:",
-        "link": "30"
+        "link": age
     },
-    {
-        "id": "4",
-        "icon": <FiBook />,
-        "label": "Degree:",
-        "link": "Master"
-    },
+    
     {
         "id": "4",
         "icon": <FiPhoneIncoming />,
         "label": "Phone:",
-        "link": "+77 022 177 05 05"
+        "link": phone
     },
 ]
 
 
-const About = ( ) => {
-    const aboutQueryData = useStaticQuery(graphql`
-        query AboutDefaultQuery {
-            homedefaultJson (id: {eq: "about"}) {
-                title
-                description
-                downloadButton
-                linkBUtton
-                aboutData {
-                    iconName
-                    id
-                    label
-                    value
-                }
-            },
-            file(relativePath: {eq: "images/banner/person-image-2.jpg"}) {
-                childImageSharp {
-                  fixed (quality: 100, width: 395, height: 470) {
-                    ...GatsbyImageSharpFixed
-                  }
-                }
-            }
-        }
-    `);
 
-    const PortfolioImages = aboutQueryData.file.childImageSharp.fixed;
-    const title = aboutQueryData.homedefaultJson.title;
-    const description = aboutQueryData.homedefaultJson.description;
-    const downloadButton = aboutQueryData.homedefaultJson.downloadButton;
-    const linkBUtton = aboutQueryData.homedefaultJson.linkBUtton;
+
+
+console.log(data)
+ 
 
     return (
         <div className="rb-about-area about-style-01 rn-section-gap bg-color-white" id="about">
@@ -97,8 +90,8 @@ const About = ( ) => {
                         <div className="inner">
                             <div className="content">
                                 <div className="section-title">
-                                    {title && <h3 className="title" dangerouslySetInnerHTML={{ __html: title }}></h3>}
-                                    {description && <p className="description" dangerouslySetInnerHTML={{ __html: description }}></p>}
+                                    <h3 className="title" dangerouslySetInnerHTML={{ __html: title }}></h3>
+                                    <p className="description" dangerouslySetInnerHTML={{ __html: description }}></p>
                                 </div>
                                 {infoList &&
                                     <ul className="myabout-list">
@@ -112,8 +105,8 @@ const About = ( ) => {
                                     </ul>
                                 }
                                 <div className="button-group mt--20">
-                                    {downloadButton && <a className="rn-button" href="#downloadbutton"><span>{downloadButton}</span></a>}
-                                    {linkBUtton && <a className="rn-button" href="#linkbutton"><span>{linkBUtton}</span></a>}
+                                   <a className="rn-button" href={resume}><span>resume</span></a>
+                                   
                                 </div>
                             </div>
                         </div>

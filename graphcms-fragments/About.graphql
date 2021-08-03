@@ -1,0 +1,42 @@
+fragment About on About {
+  stage
+  remoteId: id
+  createdAt
+  updatedAt
+  publishedAt
+  sectionTitle
+  sectionParagraph
+  age
+  location
+  email
+  phone
+  createdBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  updatedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  publishedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  resume {
+    ... on Asset {
+      remoteTypeName: __typename
+      remoteId: id
+      locale
+      stage
+    }
+  }
+}

@@ -1,0 +1,39 @@
+fragment SectionWorkingPeriod on SectionWorkingPeriod {
+  stage
+  remoteId: id
+  createdAt
+  updatedAt
+  publishedAt
+  dates
+  position
+  jobDecription
+  createdBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  updatedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  publishedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  companylogos {
+    ... on Asset {
+      remoteTypeName: __typename
+      remoteId: id
+      locale
+      stage
+    }
+  }
+}
