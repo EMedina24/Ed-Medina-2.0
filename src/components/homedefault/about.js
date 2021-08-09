@@ -33,8 +33,9 @@ const About = ( ) => {
   const email = data.allGraphCmsAbout.edges[0].node.email;
   const phone = data.allGraphCmsAbout.edges[0].node.phone;
   const age = data.allGraphCmsAbout.edges[0].node.age;
-  const resume = data.allGraphCmsAbout.edges[0].node.resume.url;
 
+  const resume = data.allGraphCmsAbout.edges[0].node.resume.url;
+  
   const infoList = [
   
     {
@@ -104,7 +105,7 @@ console.log(data)
                                     </ul>
                                 }
                                 <div className="button-group mt--20">
-                                   <a className="rn-button"  target="_blank" href={resume}><span>resume</span></a>
+                                   <a className="rn-button" href={resume}><span>resume</span></a>
                                    
                                 </div>
                             </div>
