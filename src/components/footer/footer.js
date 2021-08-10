@@ -28,8 +28,7 @@ const Footer = ({showBelow}) => {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-9">
-                        <p className="copyright-text">© {new Date().getFullYear()}, Arlo, LCC. All rights reserved. Raect has been designed by
-                        <a target="_blank" href="https://themeforest.net/user/rainbow-themes"> Rainbow Themes</a></p>
+                        <p className="copyright-text">© {new Date().getFullYear()}, Edgardo Medina</p>
                     </div>
                     <div className="col-lg-3">
                         <div className="back-to-top">

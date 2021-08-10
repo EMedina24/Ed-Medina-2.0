@@ -18,10 +18,10 @@ const IndexPage = () => (
     <Service />
     <div id="portfolio">
         <Project />
-        <Testimonial />
-        <Timeline />
+       
+        
     </div>
-    <BlogPost />
+ 
     <Contact />
   </Layout>
   
