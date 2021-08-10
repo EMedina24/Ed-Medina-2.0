@@ -2,7 +2,7 @@ import React from 'react';
 import {useStaticQuery, graphql} from 'gatsby';
 import Projectcard from "./projectcard";
 
-const ProjectOne = () => {
+const ProjectOne = ({graphCMS}) => {
     const ProjectData = useStaticQuery(graphql`
         query ProjectDataQuery {
             allProjectJson(limit: 6) {
@@ -27,17 +27,17 @@ const ProjectOne = () => {
     `);
 
     const projectsData = ProjectData.allProjectJson.edges;
+    const graphCMSData = graphCMS.edges;
+     console.log("passed Data",graphCMS)
     return (
         <div className="row row--25">
-            {projectsData.map( data => (
+            {graphCMSData.map( data => (
                 <Projectcard key={data.node.id}
                     column="col-lg-4 col-md-6 col-12"
                     portfolioStyle="portfolio-style-1"
-                    key={data.node.id} 
-                    id={data.node.id}
-                    image={data.node.featured_image.childImageSharp}
-                    title={data.node.title}
-                    category={data.node.category}
+                    image={data.node.projectLogo[0].url}
+                    title={data.node.sectionTitle}
+                    
                 />
             ))}
         </div>

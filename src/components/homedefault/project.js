@@ -10,8 +10,29 @@ const Project = () => {
             title
             subtitle
             }
+
+            allGraphCmsSectionPortfolio {
+                edges {
+                  node {
+                    sectionTitle
+                    client
+                    projectEmployer
+                    projectLogo {
+                      url
+                    }
+                    projectPictures {
+                      url
+                    }
+                  }
+                }
+              }
+
+
+
+
         }
     `);
+    console.log("newQuery", portfolioData)
     const Title = portfolioData.homedefaultJson.title;
     const Subtitle = portfolioData.homedefaultJson.subtitle;
     return (
@@ -25,7 +46,7 @@ const Project = () => {
                         </div>
                     </div>
                 </div>
-                <ProjectOne />
+                <ProjectOne graphCMS={portfolioData.allGraphCmsSectionPortfolio} />
             </div>
         </div>
     )
