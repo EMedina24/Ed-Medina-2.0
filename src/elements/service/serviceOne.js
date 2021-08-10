@@ -3,21 +3,19 @@ import {useStaticQuery, graphql} from 'gatsby';
 
 const ServiceOne = (props) => {
     const aboutQueryData = useStaticQuery(graphql`
-        query serviceData {
-            allServiceJson {
+        query  {
+            allGraphCmsSectionWhatIDo {
                 edges {
-                    node {
-                        id
-                        number
-                        title
-                        description
-                        readmoreButton
-                    }
+                  node {
+                    sectionTitle
+                    sectionDescription
+                  }
                 }
-            }
+              }
         }
     `);
-    const services = aboutQueryData.allServiceJson.edges;
+    const services = aboutQueryData.allGraphCmsSectionWhatIDo.edges
+    console.log("services",aboutQueryData)
     return (
         <>
             {services.map((data) => (
@@ -25,12 +23,12 @@ const ServiceOne = (props) => {
                     <div className={`service ${props.serviceStyle}`}>
                         <div className="inner">
                             <div className="number">
-                                <span>{data.node.number}</span>
+                        
                             </div>
                             <div className="content">
-                                <h3 className="title">{data.node.title}</h3>
-                                <p className="description">{data.node.description}</p>
-                                <a className="readmore-btn" href="#service">{data.node.readmoreButton}</a>
+                                <h3 className="title">{data.node.sectionTitle}</h3>
+                                <p className="description">{data.node.sectionDescription}</p>
+                                
                             </div>
                         </div>
                     </div>

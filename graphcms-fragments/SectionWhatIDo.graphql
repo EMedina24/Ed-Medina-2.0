@@ -1,13 +1,11 @@
-fragment SectionPortfolio on SectionPortfolio {
+fragment SectionWhatIDo on SectionWhatIDo {
   stage
   remoteId: id
   createdAt
   updatedAt
   publishedAt
   sectionTitle
-  catagory
-  client
-  projectEmployer
+  sectionDescription
   createdBy {
     ... on User {
       remoteTypeName: __typename
@@ -26,22 +24,6 @@ fragment SectionPortfolio on SectionPortfolio {
     ... on User {
       remoteTypeName: __typename
       remoteId: id
-      stage
-    }
-  }
-  projectPictures {
-    ... on Asset {
-      remoteTypeName: __typename
-      remoteId: id
-      locale
-      stage
-    }
-  }
-  projectLogo {
-    ... on Asset {
-      remoteTypeName: __typename
-      remoteId: id
-      locale
       stage
     }
   }

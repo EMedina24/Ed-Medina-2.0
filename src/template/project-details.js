@@ -5,9 +5,28 @@ import Layout from "../components/layout";
 import { FiList, FiUser, FiInstagram } from "react-icons/fi";
 
 
+export const query = graphql`
+    query ($title: String!){
+        graphCmsSectionPortfolio(sectionTitle: {eq: $title}) {
+            sectionTitle
+            client
+            projectEmployer
+            projectPictures {
+              url
+            }
+          }
+    }
+`
+
+
+
+
+
+
 const ProjectDetails = ({data}) => {
-    const projectData = data.projectJson;
-    const projectImage = data.projectJson.features;
+    console.log(data)
+    const projectData = data.graphCmsSectionPortfolio;
+    
     return (
         <Layout>
             <div className="rn-project-details-area rn-section-gapBottom pt--90 bg-color-white">
@@ -16,7 +35,7 @@ const ProjectDetails = ({data}) => {
                         <div className="col-lg-12">
                             <div className="inner">
                                 <div className="page-top">
-                                    <h1 className="title_holder">{projectData.title}</h1>
+                                    <h1 className="title_holder">{projectData.sectionTitle}</h1>
                                 </div>
                                 <div className="portfolio-content mt--90 mt_lg--30 mt_md--20 mt_sm--20">
                                     <div className="row">
@@ -24,29 +43,24 @@ const ProjectDetails = ({data}) => {
                                             <div className="content-left">
                                                 <h3>Details</h3>
                                                 <ul className="list_holder">
-                                                    <li><span className="icon"><FiList />Category:</span><span className="projectinfo">{projectData.category}</span></li>
-                                                    <li><span className="icon"><FiUser />Client:</span><span className="projectinfo">{projectData.client}</span></li>
-                                                    <li><span className="icon"><FiInstagram />Images by:</span><span className="projectinfo">{projectData.imgesBY}</span></li>
+                                                    <li><span className="icon"><FiUser />Employer:</span><span className="projectinfo">{projectData.client}</span></li>
+                                                    
                                                 </ul>
                                             </div>
                                         </div>
                                         <div className="col-lg-6 col-md-12 col-12 mt_md--30 mt_sm--30">
                                             <div className="content-left">
-                                                <p>{projectData.body}</p>
+                                                <p>{projectData.projectEmployer}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="thumbnail mt--90 mt_md--40 mt_sm--40">
-                                    <Image fluid={projectData.featured_image.childImageSharp.fluid} />
+                                    <img src={projectData.projectPictures.url} />
                                 </div>
 
                                 <div className="image-group">
-                                    {projectImage.map((data, index) => (
-                                        <div className="single-image mt--30" key={index}>
-                                            <Img fluid={data.image.childImageSharp.fluid} />
-                                        </div>
-                                    ))}
+                                 
                                 </div>   
 
                                
@@ -59,37 +73,5 @@ const ProjectDetails = ({data}) => {
     )
 }
 
-export const query = graphql `
-    query($id: String!) {
-        projectJson(id: {eq: $id}) {
-            id
-            title
-            body
-            category
-            client
-            imgesBY
-            featured_image {
-                childImageSharp {
-                    fluid(maxHeight: 1000, maxWidth: 2000, quality: 100) {
-                        ...GatsbyImageSharpFluid_withWebp
-                        presentationHeight
-                        presentationWidth
-                    }
-                }
-            },
-            features {
-                image {
-                    childImageSharp {
-                      fluid(maxWidth: 1920, maxHeight: 1280, quality: 100) {
-                        ...GatsbyImageSharpFluid_withWebp
-                        presentationWidth
-                        presentationHeight
-                      }
-                    }
-                }
-            }
-            
-        }
-    }
-`;
+
 export default ProjectDetails;

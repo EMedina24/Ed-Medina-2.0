@@ -5,14 +5,10 @@ import Img from 'gatsby-image'
 
 
 const Projectcard = ({image, id, title, category, column}) => {
-    let projectImg;
-    if(image.fixed && typeof image.fixed !== 'function'){
-        projectImg = <Img fixed={image.fixed} alt={title}/>;
-    } else if(image.fluid){
-        projectImg = <Image fluid={image.fluid} alt={title}/>
-    } else{
-        projectImg = <img src={image.src} alt={title}/>
-    }
+   
+   
+       const  projectImg = <img src={image} alt={title}/>
+    
     return (
         <div className={column}>
             <div className="portfolio">
@@ -24,7 +20,7 @@ const Projectcard = ({image, id, title, category, column}) => {
                 <div className="content">
                     <div className="inner">
                         {title && <h4 className="title"><Link to={`/project/${id}`}>{title}</Link></h4>}
-                        {category && <span className="category">{category}</span>}
+                        
                     </div>
                 </div>
             </div>

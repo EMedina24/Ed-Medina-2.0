@@ -33,156 +33,53 @@ exports.onCreateNode = ({node , actions}) => {
 
 }
 
-exports.createPages = ({actions, graphql}) => {
+
+
+exports.createPages = ({ graphql, actions }) => {
     const { createPage } = actions;
-    const templates =  {
-        projectDetails: path.resolve('src/template/project-details.js'),
-        blogDetails: path.resolve('src/template/blog-details.js'),
-        categoryPost: path.resolve('src/template/category-post.js'),
-        tagPost: path.resolve('src/template/tag-template.js'),
-        authorPage: path.resolve('src/template/archive.js'),
-    }
-
-    return graphql(`
-        {
-            allProjectJson {
-                edges {
-                    node {
-                        id
-                    }
+    //const layoutTemplate = path.resolve(`src/templates/pageTemplate.js`);
+    const portfolioPages = path.resolve(`src/template/project-details.js`);
+  
+    const graphCMSPages = graphql(`
+      query {
+        allGraphCmsSectionPortfolio {
+            edges {
+              node {
+                sectionTitle
+                client
+                projectEmployer
+                projectPictures {
+                  url
                 }
+              }
             }
-
-
-            allMarkdownRemark {
-                edges {
-                    node {
-                        fields {
-                            slug
-                            authorId
-                        }
-                        frontmatter {
-                            author {
-                                name
-                            }
-                            tags
-                            category
-                        }
-                    }
-                }
-            }
-            
-
+          }
+      }
+    `).then((result) => {
+      if (result.errors) {
+        throw result.errors;
+      }
+      result.data.allGraphCmsSectionPortfolio.edges.forEach((edge) => {
+        planID = edge.node.slug;
+        if (edge.node.slug === "404") {
+          // for 404 page we use custom page at src/pages/404.js
+          return;
         }
-    `).then( res => {
-        if (res.errors) return Promise.reject(res.errors)
-        const project = res.data.allProjectJson.edges
-        const posts = res.data.allMarkdownRemark.edges
-
-         // Create Project Page
-         project.forEach(({ node }) => {
-            createPage({
-                // path: node.fields.slug,
-                path: `project/${slugify(node.id)}`,
-                component: templates.projectDetails,
-                context: {
-                    id: node.id
-                }
-            })
-        })
-
-        // Create Single Blog Page 
-        posts.forEach(({ node }) => {
-            createPage({
-                path: `${slugify(node.fields.slug)}`,
-                component: templates.blogDetails,
-                context: {
-                    slug: node.fields.slug
-                }
-            })
-        })
-
-        // Create Single Blog Page 
-
-        // Start Category Area 
-
-        // For get All Categiry Pages 
-        let categories = []
-        _.each(posts , edge => {
-            if (_.get(edge , 'node.frontmatter.category')) {
-                categories = categories.concat(edge.node.frontmatter.category)
-            }
-        })
-
-        // [design , code]
-        let categoryPostCounts = {}
-        categories.forEach( category => {
-            categoryPostCounts[category] = (categoryPostCounts[category] || 0) + 1
-        })
-        categories = _.uniq(categories)
-
-       
-        // Create Tag Posts Pages for indivedual Tag page
-        categories.forEach(category => {
-            createPage({
-                path: `/category/${slugify(category)}`,
-                component: templates.categoryPost,
-                context: {
-                    category 
-                }
-            })
-        })
-        // End Category Area
-
-
-
-        // Start Tags Pages 
-        let tags = []
-        _.each(posts , edge => {
-            if (_.get(edge , 'node.frontmatter.tags')) {
-                tags = tags.concat(edge.node.frontmatter.tags)
-            }
-        })
-        // Create Tag Posts Pages for indivedual Tag page
-        tags.forEach(tag => {
-            createPage({
-                path: `/tag/${slugify(tag)}`,
-                component: templates.tagPost,
-                context: {
-                    tag
-                }
-            })
-        })
-        // End Category Area
-
-
-
-        // Start Create Authors Page 
-        let authors = []
-        _.each(posts, edge => {
-            if(_.get(edge, 'node.fields.authorId')){
-                authors = authors.concat(edge.node.fields.authorId)
-            }
-        })
-        authors = _.uniq(authors)
-        authors.forEach(author => {
-            createPage({
-                path: `/author/${slugify(author)}`,
-                component: templates.authorPage,
-                context: {
-                    author
-                }
-            })
-        })
-        // End Create Authors Page
-
-
-
-
-
-    })
-
-}
+        createPage({
+          path: `/work/${edge.node.sectionTitle}`,
+          component: portfolioPages,
+          context: {
+            title: edge.node.sectionTitle,
+          },
+        });
+      });
+    });
+    
+  
+  
+    return Promise.all([graphCMSPages]);
+  };
+  
 
 
 
