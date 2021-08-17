@@ -60,7 +60,7 @@ const ProjectDetails = ({data}) => {
                                         </div>
                                         <div className="col-lg-6 col-md-12 col-12 mt_md--30 mt_sm--30">
                                             <div className="content-left">
-                                                <p dangerouslySetInnerHTML={{ __html: projectData.projectEmployer.html }}></p>
+                                                <div dangerouslySetInnerHTML={{ __html: projectData.projectEmployer.html }}></div>
                                             </div>
                                         </div>
                                     </div>

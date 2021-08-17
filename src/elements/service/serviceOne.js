@@ -32,7 +32,7 @@ const ServiceOne = (props) => {
                             </div>
                             <div className="content  whatIDoCard">
                                 <h3 className="title">{data.node.sectionTitle}</h3>
-                                <p className="description" dangerouslySetInnerHTML={{ __html: data.node.sectionDescription.html }}></p>
+                                <div  className="description" dangerouslySetInnerHTML={{ __html: data.node.sectionDescription.html }}></div>
                                 
                             </div>
                         </div>
