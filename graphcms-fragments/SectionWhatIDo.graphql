@@ -5,7 +5,14 @@ fragment SectionWhatIDo on SectionWhatIDo {
   updatedAt
   publishedAt
   sectionTitle
-  sectionDescription
+  sectionDescription {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
   createdBy {
     ... on User {
       remoteTypeName: __typename

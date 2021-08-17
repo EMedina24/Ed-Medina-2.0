@@ -47,7 +47,13 @@ exports.createPages = ({ graphql, actions }) => {
               node {
                 sectionTitle
                 client
-                projectEmployer
+                techstack
+                cms
+                link
+                role
+                projectEmployer{
+                  html
+                }
                 projectPictures {
                   url
                 }

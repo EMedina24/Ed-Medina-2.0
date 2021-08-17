@@ -83,7 +83,7 @@ console.log(data)
                 </div>
                 <div className="row mt--60 mb--30 row--25">
                 <div className="section-title">
-                            <span className="subtitle">BIOGRAPHY</span>
+                            
                             <h2 className="title">ABOUT ME</h2>
                         </div>
                     <div className="col-lg-7 col-md-12 col-12 mt_md--40 mt_sm--40">
@@ -105,7 +105,7 @@ console.log(data)
                                     </ul>
                                 }
                                 <div className="button-group mt--20">
-                                   <a className="rn-button" href={resume}><span>resume</span></a>
+                                   <a className="rn-button"  target="_blank"  href={resume}><span>Resume</span></a>
                                    
                                 </div>
                             </div>

@@ -36,7 +36,7 @@ const Header = () => {
                     {/* Header Logo  */}
                     <div className="logo">
                         <Link to="/">
-                        <img className="portfolio-images" src={profile} />
+                        <img className="  portfolio-images" src={profile} />
                            
                         </Link>
                     </div>
@@ -58,13 +58,7 @@ const Header = () => {
                                         </span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a className="nav-link menu-hover-link" href="/#service">
-                                        <span className="hover-item">
-                                            <span data-text="Services">Services</span>
-                                        </span>
-                                    </a>
-                                </li>
+
                                 <li>
                                     <a className="nav-link menu-hover-link" href="/#portfolio">
                                         <span className="hover-item">
@@ -72,6 +66,14 @@ const Header = () => {
                                         </span>
                                     </a>
                                 </li>
+                                <li>
+                                    <a className="nav-link menu-hover-link" href="/#service">
+                                        <span className="hover-item">
+                                            <span data-text="Services">What I Do</span>
+                                        </span>
+                                    </a>
+                                </li>
+                              
                                
                                 <li>
                                     <a className="nav-link menu-hover-link" href="/#contact">

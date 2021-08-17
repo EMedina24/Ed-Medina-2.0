@@ -12,17 +12,16 @@ import Contact from "../elements/contact/contact";
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Arlo Static Demo Dark" />
-    <Banner />
+    <SEO title="Edgardo Medina" />
+    <Banner/>
     <About />
-    <Service />
     <div id="portfolio">
-        <Project />
-       
-        
+        <Project /> 
     </div>
  
-    <Contact />
+    <Service />
+ <Contact/>
+  
   </Layout>
   
 )

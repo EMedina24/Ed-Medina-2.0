@@ -8,7 +8,12 @@ const ServiceOne = (props) => {
                 edges {
                   node {
                     sectionTitle
-                    sectionDescription
+                    sectionDescription{
+                        html
+                        markdown
+                        text
+                        raw
+                    }
                   }
                 }
               }
@@ -25,9 +30,9 @@ const ServiceOne = (props) => {
                             <div className="number">
                         
                             </div>
-                            <div className="content">
+                            <div className="content  whatIDoCard">
                                 <h3 className="title">{data.node.sectionTitle}</h3>
-                                <p className="description">{data.node.sectionDescription}</p>
+                                <p className="description" dangerouslySetInnerHTML={{ __html: data.node.sectionDescription.html }}></p>
                                 
                             </div>
                         </div>

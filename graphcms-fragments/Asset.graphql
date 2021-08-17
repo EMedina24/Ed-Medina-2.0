@@ -74,5 +74,12 @@ fragment Asset on Asset {
       stage
     }
   }
+  projectLogoSectionPortfolio {
+    ... on SectionPortfolio {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
   url
 }

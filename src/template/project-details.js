@@ -2,7 +2,7 @@ import React from 'react';
 import Img from "gatsby-image";
 import Image from "../elements/image";
 import Layout from "../components/layout";
-import { FiList, FiUser, FiInstagram } from "react-icons/fi";
+import { FiList, FiUser, FiInstagram,FiCpu,FiCodesandbox,FiLink } from "react-icons/fi";
 
 
 export const query = graphql`
@@ -10,7 +10,13 @@ export const query = graphql`
         graphCmsSectionPortfolio(sectionTitle: {eq: $title}) {
             sectionTitle
             client
-            projectEmployer
+            techstack
+            cms
+            link
+            role
+            projectEmployer{
+                html
+            }
             projectPictures {
               url
             }
@@ -44,13 +50,17 @@ const ProjectDetails = ({data}) => {
                                                 <h3>Details</h3>
                                                 <ul className="list_holder">
                                                     <li><span className="icon"><FiUser />Employer:</span><span className="projectinfo">{projectData.client}</span></li>
+                                                    <li><span className="icon"><FiUser />Role:</span><span className="projectinfo">{projectData.role}</span></li>
+                                                    <li><span className="icon"><FiCpu />TechStack:</span><span className="projectinfo">{projectData.techstack}</span></li>
+                                                    <li><span className="icon"><FiCodesandbox />CMS:</span><span className="projectinfo">{projectData.cms}</span></li>
+                                                    <li><span className="icon"><FiLink /></span><span className="projectinfo"><a href={projectData.link}>Visit</a></span></li>
                                                     
                                                 </ul>
                                             </div>
                                         </div>
                                         <div className="col-lg-6 col-md-12 col-12 mt_md--30 mt_sm--30">
                                             <div className="content-left">
-                                                <p>{projectData.projectEmployer}</p>
+                                                <p dangerouslySetInnerHTML={{ __html: projectData.projectEmployer.html }}></p>
                                             </div>
                                         </div>
                                     </div>

@@ -16,7 +16,12 @@ const Project = () => {
                   node {
                     sectionTitle
                     client
-                    projectEmployer
+                    techstack
+                    cms
+                    link
+                    projectEmployer{
+                      html
+                    }
                     projectLogo {
                       url
                     }

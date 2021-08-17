@@ -7,7 +7,18 @@ fragment SectionPortfolio on SectionPortfolio {
   sectionTitle
   catagory
   client
-  projectEmployer
+  projectEmployer {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  techstack
+  cms
+  link
+  role
   createdBy {
     ... on User {
       remoteTypeName: __typename

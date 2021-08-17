@@ -1,10 +1,10 @@
 module.exports = {
   siteMetadata: {
-    title: `Arlo Portfolio React Template`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Portfolio Site`,
+    description: `Edgardo Medina Web Developer Portfolio Site`,
+    author: `Ed Medina`,
     siteUrl: "http://localhost:8000/",
-    getform_url: "https://getform.io/f/7a6695a7-c8e3-442c-bc2f-d46d3b9a535e",
+    getform_url: "https://formspree.io/f/xayaljln",
   },
 
   mapping: {
