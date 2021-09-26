@@ -88,14 +88,7 @@ const Header = () => {
                     </div>
 
                     {/* Start Header Bottom  */}
-                    <div className="header-bottom">
-                        <ul className="social-icons">
-                         
-                            <li><a href="linkedin.com"><FaLinkedinIn /></a></li>
-                            <li><a href="instagram.com"><FaInstagram /></a></li>
-                           
-                        </ul>
-                    </div>
+                  
 
                 </div>
             </header>
