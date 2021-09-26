@@ -90,7 +90,7 @@ console.log(data)
                         <div className="inner">
                             <div className="content">
                                 <div className="section-title">
-                                    <h3 className="title" dangerouslySetInnerHTML={{ __html: title }}></h3>
+                                  
                                     <p className="description" dangerouslySetInnerHTML={{ __html: description }}></p>
                                 </div>
                                 {infoList &&
